@@ -19,6 +19,7 @@ function sapin(nb) {
     return tableau;
   }
   function ajoutFeuilles(tableau, nb) {
+
     for (let i = 0; i < nb; i++) {
       tableau.push("*");
     }
@@ -31,7 +32,7 @@ function sapin(nb) {
     }
     return tableau;
   }
-  function ajourDiez(tableau, nb) {
+  function ajoutDiez(tableau, nb) {
     for (let i = 0; i < nb; i++) {
       tableau.push("#");
     }
@@ -40,6 +41,7 @@ function sapin(nb) {
 
   function sapinConstruction(nbEtage) {
     let tableau = [];
+    let x = 0;
     function hautDuSapin(nbEtage) {
       ajoutEspace(tableau, nbEtage + 1);
       ajoutEtoile(tableau);
@@ -52,7 +54,7 @@ function sapin(nb) {
           ajoutEspace(tableau, nbEtage - i);
           ajoutBrancheGauche(tableau);
           ajoutFeuilles(tableau, i * 2 + 1);
-          console.log(tableau, i, i * 2 + 1);
+          //console.log(tableau, i, i * 2 + 1);
           ajoutBrancheDroite(tableau);
           retourALaLigne(tableau);
         }
@@ -60,7 +62,7 @@ function sapin(nb) {
           ajoutEspace(tableau, nbEtage - i);
           ajoutBrancheGauche(tableau);
           ajoutFeuilles(tableau, i * 2 + 1);
-          console.log(tableau, i, i * 2 + 1);
+          //console.log(tableau, i, i * 2 + 1);
           ajoutBrancheDroite(tableau);
           retourALaLigne(tableau);
         }
@@ -68,28 +70,30 @@ function sapin(nb) {
         ajoutEspace(tableau, nbEtage - i);
         ajoutBrancheGauche(tableau);
         ajoutFeuilles(tableau, i * 2 + 1);
-        console.log(tableau, i, i * 2 + 1);
+        x = (i * 2 + 1);
+        //console.log(x)
+        //console.log(tableau, i, i * 2 + 1);
         ajoutBrancheDroite(tableau);
         retourALaLigne(tableau);
 
         //pied
       }
-      if (nbEtage < 4) {
-        ajoutEspace(tableau, nbEtage / 2 + 2);
-        ajourDiez(tableau, 1);
+      if (nbEtage < 7) {
+        ajoutEspace(tableau, (x / 2));
+        ajoutDiez(tableau, 1);
       }
-      if (nbEtage >= 4 && nbEtage<7) {
-        for (let i =0; i<2; i++){
-        ajoutEspace(tableau, nbEtage / 2 + 2);
-        ajourDiez(tableau, 2);
-        retourALaLigne(tableau);
-        }
-      }
+    //   if (nbEtage >= 4 && nbEtage < 7) {
+    //     for (let i = 0; i < 2; i++) {
+    //       ajoutEspace(tableau, nbEtage / 2 + 2);
+    //       ajoutDiez(tableau, 2);
+    //       retourALaLigne(tableau);
+    //     }
+    //   }
       if (nbEtage >= 7) {
-        for (let i =0; i<3; i++){
-        ajoutEspace(tableau, nbEtage / 2 + 3);
-        ajourDiez(tableau, 2);
-        retourALaLigne(tableau);
+        for (let i = 0; i < 3; i++) {
+          ajoutEspace(tableau, (x / 2)-1);
+          ajoutDiez(tableau, 2);
+          retourALaLigne(tableau);
         }
       }
     }
@@ -104,4 +108,9 @@ function sapin(nb) {
   sapinConstruction(nb);
 }
 
+sapin(4);
+sapin(5);
+sapin(6);
 sapin(7);
+sapin(8);
+sapin(9);
